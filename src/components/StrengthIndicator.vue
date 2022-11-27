@@ -58,6 +58,8 @@ const strengthColor = computed(() => {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding-inline: 2rem;
+  height: 4.5rem;
 }
 
 span {

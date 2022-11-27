@@ -17,6 +17,7 @@ watch(copied, (newVal) => {
 });
 
 function copyPasswordToClipboard() {
+  if (!props.password) return
   navigator.clipboard.writeText(props.password);
   copied.value = true;
 }
@@ -24,7 +25,8 @@ function copyPasswordToClipboard() {
 
 <template>
   <div class="wrapper">
-    <h1>{{ password }}</h1>
+    <h1 v-if="password">{{ password }}</h1>
+    <h1 v-else class="o-25">P4$5W0rD!</h1>
     <button @click="copyPasswordToClipboard">
       <span v-if="copied">Copied</span>
       <IconCopy />
@@ -48,8 +50,14 @@ function copyPasswordToClipboard() {
   text-transform: uppercase;
   display: flex;
   gap: 1rem;
-}
-.wrapper button:where(:hover, :focus) {
   color: var(--color-strong);
+}
+.wrapper button:hover {
+  color: var(--color-text);
+}
+
+.o-25 {
+  opacity: 0.25;
+  user-select: none;
 }
 </style>

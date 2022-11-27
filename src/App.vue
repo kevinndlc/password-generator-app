@@ -5,6 +5,7 @@ import IconArrowRight from "./components/icons/IconArrowRight.vue";
 import GeneratedPassword from "./components/GeneratedPassword.vue";
 import LengthSlider from "./components/LengthSlider.vue";
 import { computed, ref } from "vue";
+import CheckboxInput from "./components/CheckboxInput.vue";
 
 const LOWERCASE_LETTERS = "abcdefghijklmnopqrstuvwxyz";
 const UPPERCASE_LETTERS = LOWERCASE_LETTERS.toUpperCase();
@@ -15,7 +16,7 @@ const passwordOptions = ref<string[]>([]);
 
 const generatedPassword = ref("");
 const passwordLength = ref(8);
-const passwordStrength = computed(() => {
+const passwordStrength = computed<0 | 1 | 2 | 3 | 4>(() => {
   if (!passwordOptions.value.length) return 0;
   if (passwordLength.value <= 4) return 1;
 
@@ -30,7 +31,7 @@ const passwordStrength = computed(() => {
   } else {
     min = 4;
   }
-  return Math.max(passwordOptions.value.length, min);
+  return Math.max(passwordOptions.value.length, min) as 1 | 2 | 3 | 4;
 });
 
 function generateRandomPassword() {
@@ -71,36 +72,56 @@ function generateRandomPassword() {
         :length="passwordLength"
         @update-length="(length) => (passwordLength = length)"
       />
-      <form>
-        <input
-          type="checkbox"
-          v-model="passwordOptions"
-          name="choices"
-          id="u-letters"
-          value="uppercase"
+      <div class="checklist">
+        <CheckboxInput
+          @update:model-value="
+            (value) => {
+              passwordOptions.includes(value)
+                ? passwordOptions.splice(passwordOptions.indexOf(value), 1)
+                : passwordOptions.push(value);
+            }
+          "
+          group="options"
+          id="uppercase"
+          label="Include Uppercase Letters"
         />
-        <input
-          type="checkbox"
-          v-model="passwordOptions"
-          name="choices"
-          id="l-letters"
-          value="lowercase"
+        <CheckboxInput
+          @update:model-value="
+            (value) => {
+              passwordOptions.includes(value)
+                ? passwordOptions.splice(passwordOptions.indexOf(value), 1)
+                : passwordOptions.push(value);
+            }
+          "
+          group="options"
+          id="lowercase"
+          label="Include Lowercase Letters"
         />
-        <input
-          type="checkbox"
-          v-model="passwordOptions"
-          name="choices"
+        <CheckboxInput
+          @update:model-value="
+            (value) => {
+              passwordOptions.includes(value)
+                ? passwordOptions.splice(passwordOptions.indexOf(value), 1)
+                : passwordOptions.push(value);
+            }
+          "
+          group="options"
           id="numbers"
-          value="numbers"
+          label="Include Numbers"
         />
-        <input
-          type="checkbox"
-          v-model="passwordOptions"
-          name="choices"
+        <CheckboxInput
+          @update:model-value="
+            (value) => {
+              passwordOptions.includes(value)
+                ? passwordOptions.splice(passwordOptions.indexOf(value), 1)
+                : passwordOptions.push(value);
+            }
+          "
+          group="options"
           id="symbols"
-          value="symbols"
+          label="Include Symbols"
         />
-      </form>
+      </div>
       <StrengthIndicator :strength="passwordStrength" />
       <PrimaryButton :end-icon="IconArrowRight" @click="generateRandomPassword"
         >Generate</PrimaryButton
@@ -135,5 +156,11 @@ main > div {
 
 .generated-pw {
   margin-bottom: 1.5rem;
+}
+
+.checklist {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
 }
 </style>

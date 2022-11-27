@@ -23,6 +23,7 @@ button {
   width: 100%;
   border: 2px solid transparent;
   transition: 200ms ease-in-out;
+  color: var(--color-background);
 }
 
 button:hover {

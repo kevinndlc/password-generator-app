@@ -2,7 +2,7 @@
 import { computed } from "vue";
 
 const props = defineProps<{
-  strength: 1 | 2 | 3 | 4;
+  strength: 0 | 1 | 2 | 3 | 4;
 }>();
 
 const strengthText = computed(() => {
@@ -16,7 +16,7 @@ const strengthText = computed(() => {
     case 4:
       return "Strong";
     default:
-      return "Unknown";
+      return "";
   }
 });
 

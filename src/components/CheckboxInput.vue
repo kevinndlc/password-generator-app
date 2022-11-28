@@ -15,6 +15,7 @@ const emit = defineEmits<{
 <template>
   <div class="wrapper">
     <input
+      ref="input"
       type="checkbox"
       :value="id"
       @input="
@@ -24,7 +25,15 @@ const emit = defineEmits<{
       :id="id"
     />
     <label v-if="label" :for="id">{{ label }}</label>
-    <button><IconCheck /></button>
+    <button
+      @click="() => {
+        ($refs.input as HTMLInputElement).checked = !($refs.input as HTMLInputElement).checked
+        emit('update:modelValue', id);
+      }
+      "
+    >
+      <IconCheck />
+    </button>
   </div>
 </template>
 

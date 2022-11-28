@@ -39,18 +39,26 @@ function copyPasswordToClipboard() {
   background-color: var(--color-foreground);
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  gap: 0.5rem;
   align-items: center;
   height: 5rem;
   padding-block: 0;
 }
 
+.wrapper h1 {
+  flex-grow: 1;
+  overflow-x: hidden;
+  white-space: nowrap;
+}
+
 .wrapper button {
   transition: color 200ms ease-in-out;
   text-transform: uppercase;
+  flex-shrink: 0;
   display: flex;
   gap: 1rem;
   color: var(--color-strong);
+  border: 2px solid
 }
 .wrapper button:hover {
   color: var(--color-text);

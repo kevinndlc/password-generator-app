@@ -32,6 +32,7 @@ const emit = defineEmits<{
       }
       "
     >
+      <span class="sr-only">Check</span>
       <IconCheck />
     </button>
   </div>

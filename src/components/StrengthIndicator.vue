@@ -40,7 +40,7 @@ const strengthColor = computed(() => {
   <div class="wrapper">
     <span>Strength</span>
     <div>
-      <h2>{{ strengthText }}</h2>
+      <h2 v-if="strengthText">{{ strengthText }}</h2>
       <div class="strength-squares">
         <div
           v-for="sq in Array(4).keys()"

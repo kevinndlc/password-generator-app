@@ -24,9 +24,11 @@ const emit = defineEmits<{
             parseInt(($event.target as HTMLInputElement).value)
           )
         "
+        id="range"
         min="1"
         max="20"
       />
+      <label for="range" class="sr-only">Password Length</label>
       <div></div>
     </div>
   </div>

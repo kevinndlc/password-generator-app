@@ -28,6 +28,7 @@ function copyPasswordToClipboard() {
     <h1 v-if="password">{{ password }}</h1>
     <h1 v-else class="o-25">P4$5W0rD!</h1>
     <button @click="copyPasswordToClipboard">
+      <span class="sr-only">Copy</span>
       <span v-if="copied">Copied</span>
       <IconCopy />
     </button>

@@ -71,7 +71,6 @@ const emit = defineEmits<{
   height: 100%;
   width: var(--progress);
   background-color: var(--color-strong);
-  pointer-events: none;
 }
 
 .input-container > div::after {
@@ -83,7 +82,7 @@ const emit = defineEmits<{
   aspect-ratio: 1;
   border-radius: 50%;
   transform-box: border-box;
-  transform: translate(-50%, -50%);
+  transform: translate(-80%, -50%);
   background-color: var(--color-text);
 }
 

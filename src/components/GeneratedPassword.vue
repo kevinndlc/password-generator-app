@@ -17,7 +17,7 @@ watch(copied, (newVal) => {
 });
 
 function copyPasswordToClipboard() {
-  if (!props.password) return
+  if (!props.password) return;
   navigator.clipboard.writeText(props.password);
   copied.value = true;
 }
@@ -58,7 +58,6 @@ function copyPasswordToClipboard() {
   display: flex;
   gap: 1rem;
   color: var(--color-strong);
-  border: 2px solid
 }
 .wrapper button:hover {
   color: var(--color-text);
